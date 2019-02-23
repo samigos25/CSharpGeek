@@ -8,6 +8,12 @@ namespace Task6
 {
     public static class ConsoleTools
     {
+        /// <summary>
+        /// dawdwwd
+        /// </summary>
+        /// <param name="message">сообщение для вывода</param>
+        /// <param name="x">горизонтальная координата</param>
+        /// <param name="y">вертикальная координата</param>
         //Северин Андрей
         public static void Print(string message, int x, int y)
         {

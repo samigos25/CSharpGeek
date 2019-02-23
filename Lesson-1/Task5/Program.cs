@@ -21,6 +21,7 @@ namespace Task5
             ConsoleTools.Print(OwnTown, 40 - FisrtName.Length / 2, 11);
             ConsoleTools.Pause();
 
+
         }
     }
 }

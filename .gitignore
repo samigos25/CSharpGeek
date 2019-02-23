@@ -8,3 +8,10 @@
 /Lesson-1/Task5/obj/Debug/TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs
 TemporaryGenerated*.cs
 *.csproj.FileListAbsolute.txt
+*.suo
+*.lock
+*.dtbcache
+*.ide-shm
+*.ide-wal
+*.csproj.CopyComplete
+*.dll
