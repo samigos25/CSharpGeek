@@ -1,0 +1,10 @@
+*.cache
+/Lesson-1/Task12/obj/Debug/TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs
+/Lesson-1/Task3/obj/Debug/TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs
+*.exe
+*.pdb
+*.ide
+/Lesson-1/Task4/obj/Debug/TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs
+/Lesson-1/Task5/obj/Debug/TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs
+TemporaryGenerated*.cs
+*.csproj.FileListAbsolute.txt
