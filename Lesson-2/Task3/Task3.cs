@@ -23,11 +23,11 @@ namespace Task3
 
             long s = 0;
             int k = 1;
-            Console.WriteLine("Сумма всех положительных четных чисел по порядковому номеру ввода");
+            Console.WriteLine("Сумма всех положительных не четных чисел по порядковому номеру ввода");
             int a = Tools.ReadInt($"Введите число номер {k}: ");
             while (a != 0)
             {
-                if (a > 0 && k % 2 == 0) s = s + a;
+                if (a > 0 && k % 2 != 0) s = s + a;
                 k++;
                 a = Tools.ReadInt($"Введите число номер {k}: ");
             }
@@ -37,11 +37,11 @@ namespace Task3
             //Второй вариант. Все четные по значению
             Console.WriteLine();
             s = 0;
-            Console.WriteLine("Сумма всех положительных четных чисел по значению");
+            Console.WriteLine("Сумма всех положительных не четных чисел по значению");
             a = Tools.ReadInt($"Введите число: ");
             while (a != 0)
             {
-                if (a > 0 && a % 2 == 0) s = s + a;
+                if (a > 0 && a % 2 != 0) s = s + a;
                 a = Tools.ReadInt($"Введите число: ");
             }
             Console.WriteLine($"Сумма равна {s}");
