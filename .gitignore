@@ -12,3 +12,4 @@ Temporary*.cs
 *.csproj.CopyComplete
 *.csproj.FileListAbsolute.txt
 *.ide-wal
+*.exe.config
