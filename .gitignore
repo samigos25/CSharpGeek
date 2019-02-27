@@ -1,0 +1,15 @@
+Temporary*.cs
+*.pdb
+*.csproj.CoreCompileInputs.cache
+*.cache
+*.dll
+*.exe
+*.ide
+*.ide-shm
+*.lock
+*.dtbcache
+*.suo
+*.csproj.CopyComplete
+*.csproj.FileListAbsolute.txt
+*.ide-wal
+*.exe.config
