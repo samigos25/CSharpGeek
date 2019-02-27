@@ -1,11 +1,4 @@
 ﻿using System;
-using System.CodeDom;
-using System.Collections.Generic;
-using System.Diagnostics.Eventing.Reader;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Task3
 {
@@ -71,12 +64,17 @@ namespace Task3
         /// </summary>
         /// <param name="numerator">Числитель</param>
         /// <param name="denominator">Знаменатель. Должен быть больше 0</param>
-        public Fraction(long numerator, long denominator)
+        /// /// <param name="simplify">Упростить дробь</param>
+        public Fraction(long numerator, long denominator, bool simplify = false)
         {
             Numerator = numerator;
             Denominator = denominator;
+            if (simplify) Simplify();
         }
         public Fraction() { }
+
+
+        #region Перегрузка операторов
 
         public static Fraction operator +(Fraction a, Fraction b)
         {
@@ -109,6 +107,8 @@ namespace Task3
             if (a is null) return true;
             return !a.Equals(b);
         }
+        #endregion // end of MyRegion 
+
 
         public Fraction Devide(Fraction x)
         {
