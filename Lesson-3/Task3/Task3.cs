@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Task3
 {
@@ -25,23 +21,23 @@ namespace Task3
             Fraction A = new Fraction(-1, 2);
             Fraction B = new Fraction(2, 3);
             Fraction C = new Fraction(6, 9);
-            Console.WriteLine(A);
-            Console.WriteLine(B);
-            Console.WriteLine(" - {0}", A.Substract(B));
-            Console.WriteLine(" + {0}", A.Add(B));
-            Console.WriteLine(" / {0}", A.Devide(B));
-            Console.WriteLine(" * {0}", A.Multiply(B));
-            Console.WriteLine(A.DecimalFraction);
-            Console.WriteLine(B.DecimalFraction);
-            Console.WriteLine(A.Simplify(C));
-            C.Simplify();
-            Console.WriteLine("Упрощение {0}", C);
-            Console.WriteLine(A == C);
-            Console.WriteLine(A != C);
-            C.Denominator = 2;
-            C.Numerator = -1;
-            Console.WriteLine(A == C);
-            Console.WriteLine(A != C);
+            Fraction D = new Fraction(150, 5);
+
+            Console.WriteLine("Даны дроби:");
+            Console.WriteLine($"A = {A}, B = {B}, C = {C}, D = {D}\n");
+            Console.WriteLine("Проверка операторов + - / *. Все операторы реализованы через методы,\n" +
+                              " так что одновременно проверяются и методы.\n" +
+                              "В конце операции вызывается упрощение");
+            Console.WriteLine($"{A} + {B} - {C} = {A + B - C}");
+            Console.WriteLine($"{B} * {D}  = {B * D}");
+            Console.WriteLine($"{B} / {C}  = {B / C} \n");
+            Console.WriteLine("Десятичное отображение дроби через поле");
+            Console.WriteLine($"{A} = {A.DecimalFraction}");
+            Console.WriteLine($"{D} = {D.DecimalFraction}");
+
+            Console.WriteLine($"Упрощение дроби {C} = {C.Simplify(C)}");
+            Console.WriteLine($"Упрощение дроби {D} = {C.Simplify(D)}");
+
 
             Console.ReadKey();
             
