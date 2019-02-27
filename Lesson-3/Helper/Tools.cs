@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace Helper
 {
@@ -53,6 +54,18 @@ namespace Helper
             if (a == 0)                                  // если a =0
                 return 0;                              // возвращаем 0
             else return SumOfDigits(a / 10) + a % 10;   // иначе вызываем рекурсивно сами себя
+        }
+
+
+        public static int ReadInt(string massage, Func<int,bool> rFunc)
+        {
+            int result;
+            do
+            {
+                result = ReadInt(massage);
+            } while (!rFunc(result));
+
+            return result;
         }
     }
 }
