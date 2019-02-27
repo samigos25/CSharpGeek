@@ -19,6 +19,64 @@ namespace ExtraTask
                 Groups.Add(t);
             }
 
+            DoGroups(Groups);
+
+            Console.WriteLine("\n" + 1);
+            foreach (var group in Groups)
+            {
+                group.Reverse();
+                group.ForEach(o => Console.Write($"{o}, "));
+                Console.WriteLine("\n");
+            }
+
+            Console.WriteLine($"Количество групп {Groups.Count+1}");
+
+            int countGroups=0;
+            for (int j = 1; j < 512; j++)
+            {
+                Groups.Clear();
+                for (int i = 2; i <= j; i++)
+                {
+                    var t = new List<int>() { i };
+                    Groups.Add(t);
+                }
+                DoGroups(Groups);
+
+                if (countGroups != Groups.Count + 1)
+                {
+                    countGroups = Groups.Count + 1;
+                    Console.WriteLine($"Число {j}, количество групп {Groups.Count + 1}");
+                }
+            }
+
+            Console.WriteLine("\nОчень интересный результат. \nВидно что количество групп увеличивается на 1 с каждой новой степенью 2.");
+            Console.WriteLine("Фактически чтобы определить количество групп для любого числа нужно узнать ближайую степень 2 к этому числу и прибавить один\n");
+            Console.ReadKey();
+
+            
+            do
+            {
+                userNumber = Tools.ReadInt("Введите Большое положительное целое число(0 для выхода): ", o => o >= 0);
+                Console.WriteLine($"Число {userNumber}, количество групп {NearPower2(userNumber) + 1}");
+            } while(userNumber != 0);
+
+            Console.ReadKey();
+        }
+
+        static int NearPower2(int num)
+        {
+            if (num == 1) return 0;
+            int pow = 1;
+            while (num - (int)Math.Pow(2,pow) >= Math.Pow(2, pow))
+            {
+                pow++;
+            }
+
+            return pow;
+        }
+
+        static void DoGroups(List<List<int>> Groups)
+        {
             bool cont = false;
             int groupForRemove = 0;
             do
@@ -43,20 +101,9 @@ namespace ExtraTask
                 {
                     cont = true;
                     groupForRemove++;
-                } 
+                }
 
             } while (cont);
-
-            Console.WriteLine("\n" + 1);
-            foreach (var group in Groups)
-            {
-                group.Reverse();
-                group.ForEach(o => Console.Write($"{o}, "));
-                Console.WriteLine();
-            }
-
-            Console.ReadKey();
-
         }
 
         static bool CanUnite(List<int> ListA, List<int> ListB)
