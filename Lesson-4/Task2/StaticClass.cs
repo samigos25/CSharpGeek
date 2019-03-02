@@ -11,18 +11,17 @@ namespace Task2
     //а) Класс должен содержать статический метод, который принимает на вход массив и решает задачу 1;
     //б) *Добавьте статический метод для считывания массива из текстового файла.Метод должен возвращать массив целых чисел;
     //в)**Добавьте обработку ситуации отсутствия файла на диске.
-    static class StaticClass
+    public static class StaticClass
     {
         private static Random rnd = new Random();
 
         /// <summary>
-        /// Возвращает масси целых чисел полученных из файла
+        /// Возвращает массив целых чисел полученных из файла
         /// </summary>
         /// <param name="pathToFile"></param>
         /// <returns></returns>
         public static int[] ReadArrayFromFile(string pathToFile = "Array.txt")
         {
-            int temp;
             List<int> list = new List<int>();
             try
             {
@@ -30,8 +29,8 @@ namespace Task2
                 {
                     while (!sr.EndOfStream)
                     {
-                        Int32.TryParse(sr.ReadLine(), out temp);
-                        list.Add(temp);
+                        if (Int32.TryParse(sr.ReadLine(), out int temp))
+                            list.Add(temp);
                     }
                 }
             }
@@ -117,7 +116,6 @@ namespace Task2
         /// <param name="linesCount">Количество строк в файле</param>
         /// <param name="minRange">Нижний предел значеий</param>
         /// <param name="maxRange">Верхний предел значений</param>
-        /// <exception cref="safew"></exception>
         public static bool CreateTextFileWithArray(string pathToFile = "Array.txt", int linesCount = 20, int minRange = -10000, int maxRange = 10000)
         {
             List<int> arr = GenerateRandomArray(linesCount, minRange, maxRange).ToList();
