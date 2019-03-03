@@ -26,7 +26,7 @@ namespace Task3
         {
 
             Console.WriteLine("Создадим массив из 20 элементов начиная с 15 с шагом -3");
-            MyArray b = new MyArray(20, 15, -3);
+            MyArrayOne b = new MyArrayOne(20, 15, -3);
             b.Print();
             b.BubbleSort();
             b.Print("Отсортированный по возрастанию массив");
@@ -36,7 +36,7 @@ namespace Task3
             Console.WriteLine("Создадим файл со 100 строками с числами от -10 до 10");
             StaticClass.CreateTextFileWithArray("data.txt", 100, minRange: -10, maxRange: 10);
             Console.WriteLine("Создадим массив на основе файл Data.txt");
-            b = new MyArray("Data.txt");
+            b = new MyArrayOne("Data.txt");
             b.Print("Массив из файла");
             b.Multi(5);
             b.Print("Умножим каждый элемент массива на 5");

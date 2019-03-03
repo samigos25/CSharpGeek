@@ -15,7 +15,7 @@ namespace MyArrays
     //метод Inverse, возвращающий новый массив с измененными знаками у всех элементов массива (старый массив, остается без изменений),
     //метод Multi, умножающий каждый элемент массива на определённое число,
     //свойство MaxCount, возвращающее количество максимальных элементов. 
-    public class MyArray
+    public class MyArrayOne
     {
         int[] a;
 
@@ -25,7 +25,7 @@ namespace MyArrays
         /// <param name="amount">количество элементов в массиве</param>
         /// <param name="start">начальное значение</param>
         /// <param name="step">шаг элементов</param>
-        public MyArray(int amount, int start, int step)
+        public MyArrayOne(int amount, int start, int step)
         {
             a = Enumerable.Range(start, amount).Select((o, i) => new {item = o, index = i})
                 .Select(o => o.index * step + start).ToArray();
@@ -36,12 +36,12 @@ namespace MyArrays
         /// </summary>
         /// <param name="filename">имя файла</param>
 
-        public MyArray(int[] arr)
+        public MyArrayOne(int[] arr)
         {
             a = arr;
         }
-        public MyArray() { }
-        public MyArray(string filename)
+        public MyArrayOne() { }
+        public MyArrayOne(string filename)
         {
             a = StaticClass.ReadArrayFromFile(filename);
         }
@@ -51,10 +51,10 @@ namespace MyArrays
         /// </summary>
         /// <param name="arr"></param>
         /// <returns></returns>
-        public MyArray Inverse()
+        public MyArrayOne Inverse()
         {
 
-            return new MyArray() {a = a.Select(o => -o).ToArray()};
+            return new MyArrayOne() {a = a.Select(o => -o).ToArray()};
 
         }
     
