@@ -34,7 +34,7 @@ namespace Task1
             } while (login != "0");
         }
 
-        //Моджно использовать IgnoreCase тогда pattern уменьшится до @"^[a-z]{1}[a-z0-9]{1,9}$";
+        //Моджно использовать IgnoreCase тогда pattern уменьшится до @"^[a-z]{1}[a-z0-9]{1,9}$"
         static bool LoginIsCorrectWithRegex(string login)
         {
             string pattern = @"^[a-zA-Z]{1}[a-zA-Z0-9]{1,9}$";
