@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Linq;
+using Helper;
 
 namespace Task4
 {
@@ -27,10 +29,47 @@ namespace Task4
         static void Main(string[] args)
         {
             List<string> list = new List<string>();
-            using (StreamReader sr = new StreamReader(@"..\..\list.csv"))
+            List<string> listForWork = new List<string>();
+            using (StreamReader streamReader = new StreamReader("..\\..\\list.csv"))
             {
-                
+                while (!streamReader.EndOfStream)
+                {
+                    list.Add(streamReader.ReadLine());
+                }
             }
+            int num = Tools.ReadInt("Введите число от 10 до 100: ", o => (o >= 10 && o <= 100));
+            listForWork.AddRange(list.GetRange(0, num));
+            list = Task.VeryBad(listForWork);
+            Console.WriteLine(list.Count);
+            foreach (string str in list)
+            {
+                Console.WriteLine(str);
+            }
+            Console.ReadKey();
+        }
+
+        private static List<string> VeryBad(List<string> list)
+        {
+            short grade1;
+            short grade2;
+            short grade3;
+            List<string> result = new List<string>();
+            var t = list.Select((item, index) =>(item: item, index: index)).Select(o => {
+                string[] arr = o.item.Split(new char[] { ' ' });
+                grade1 = short.Parse(arr[2]);
+                grade2 = short.Parse(arr[3]);
+                grade3 = short.Parse(arr[4]);
+                return (GradesSum:grade1 + grade2 + grade3, Index: o.index);
+            });
+            var groupings = t.OrderBy(o => o.GradesSum).GroupBy(o => o.GradesSum).ToList();
+            for (int i = 0; i < 3; i++)
+            {
+                foreach (var (_, index) in groupings[i])
+                {
+                    result.Add(list[index]);
+                }
+            }
+            return result;
         }
     }
 }
