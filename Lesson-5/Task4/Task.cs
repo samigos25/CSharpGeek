@@ -50,25 +50,17 @@ namespace Task4
 
         private static List<string> VeryBad(List<string> list)
         {
-            short grade1;
-            short grade2;
-            short grade3;
             List<string> result = new List<string>();
             var t = list.Select((item, index) =>(item: item, index: index)).Select(o => {
                 string[] arr = o.item.Split(new char[] { ' ' });
-                grade1 = short.Parse(arr[2]);
-                grade2 = short.Parse(arr[3]);
-                grade3 = short.Parse(arr[4]);
+                int grade1 = short.Parse(arr[2]);
+                int grade2 = short.Parse(arr[3]);
+                int grade3 = short.Parse(arr[4]);
                 return (GradesSum:grade1 + grade2 + grade3, Index: o.index);
             });
             var groupings = t.OrderBy(o => o.GradesSum).GroupBy(o => o.GradesSum).ToList();
             for (int i = 0; i < 3; i++)
-            {
-                foreach (var (_, index) in groupings[i])
-                {
-                    result.Add(list[index]);
-                }
-            }
+                foreach (var (_, index) in groupings[i]) result.Add(list[index]);
             return result;
         }
     }
