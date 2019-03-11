@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Text;
 
 //Северин Андрей
 
@@ -12,67 +14,89 @@ using System.IO;
 
 class Student
 {
-    public string lastName;
-    public string firstName;
-    public string university;
-    public string faculty;
-    public int course;
-    public string department;
-    public int group;
-    public string city;
-    int age;
+    public string LastName { get; set; }
+    public string FirstName { get; set; }
+    public string University { get; set; }
+    public string Faculty { get; set; }
+    public int Course { get; set; }
+    public int Group { get; set; }
+    public string City { get; set; }
+    public int Age { get; set; }
+
+    public Student() { }
     // Создаем конструктор
-    public Student(string firstName, string lastName, string university, string faculty, string department, int course, int age, int group, string city)
+    public Student(string lastName, string firstName, string university, string faculty, int course, int age, int group, string city)
     {
-        this.lastName = lastName;
-        this.firstName = firstName;
-        this.university = university;
-        this.faculty = faculty;
-        this.department = department;
-        this.course = course;
-        this.age = age;
-        this.group = group;
-        this.city = city;
+        this.LastName = lastName;
+        this.FirstName = firstName;
+        this.University = university;
+        this.Faculty = faculty;
+        this.Course = course;
+        this.Age = age;
+        this.Group = group;
+        this.City = city;
     }
 }
 class Task
 {
     static int MyDelegat(Student st1, Student st2)          // Создаем метод для сравнения для экземпляров
     {
-
-        return String.Compare(st1.firstName, st2.firstName);          // Сравниваем две строки
+        return String.Compare(st1.FirstName, st2.FirstName);          // Сравниваем две строки
     }
     static void Main(string[] args)
     {
         int bakalavr = 0;
         int magistr = 0;
-        List<Student> list = new List<Student>();                             // Создаем список студентов
+        List<Student> list = new List<Student>(); 
         DateTime dt = DateTime.Now;
-        StreamReader sr = new StreamReader("students_6.csv");
-        while (!sr.EndOfStream)
+        using (StreamReader sr = new StreamReader("..\\..\\list.csv", Encoding.UTF8))
         {
-            try
+            sr.ReadLine();
+            while (!sr.EndOfStream)
             {
-                string[] s = sr.ReadLine().Split(';');
-                // Добавляем в список новый экземпляр класса Student
-                list.Add(new Student(s[0], s[1], s[2], s[3], s[4], int.Parse(s[5]), int.Parse(s[6]), int.Parse(s[7]), s[8]));
-                // Одновременно подсчитываем количество бакалавров и магистров
-                if (int.Parse(s[5]) < 5) bakalavr++; else magistr++;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-                Console.WriteLine("Ошибка!ESC - прекратить выполнение программы");
-                // Выход из Main
-                if (Console.ReadKey().Key == ConsoleKey.Escape) return;
+                try
+                {
+                    string[] s = sr.ReadLine().Split(';');
+                    list.Add(new Student()
+                    {
+                        LastName = s[0],
+                        FirstName = s[1],
+                        City = s[7],
+                        University = s[2],
+                        Course = int.Parse(s[4]),
+                        Faculty = s[3],
+                        Age = int.Parse(s[6]),
+                        Group = int.Parse(s[5]),
+                    });
+
+                    if (list.Last().Course < 5) bakalavr++; else magistr++;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                    Console.WriteLine("Ошибка!ESC - прекратить выполнение программы");
+                    // Выход из Main
+                    if (Console.ReadKey().Key == ConsoleKey.Escape) return;
+                }
             }
         }
-        sr.Close();
+
         list.Sort(new Comparison<Student>(MyDelegat));
         Console.WriteLine("Всего студентов:" + list.Count);
         Console.WriteLine("Магистров:{0}", magistr);
         Console.WriteLine("Бакалавров:{0}", bakalavr);
-        foreach (var v in list) Console.WriteLine(v.firstName);
+        //foreach (var v in list) Console.WriteLine(v.FirstName);
+
+        Console.WriteLine($"Количество студентов учищихся на 5 и 6 курсах: {list.Where(o => (o.Course == 5 || o.Course == 6)).Count()}\n");
+
+        Console.WriteLine("Студенты в возрасте от 18 до 20 лет учатся:");
+        foreach (IGrouping<int, Student> students in list.Where(o => (o.Age >= 18 && o.Age <= 20)).OrderBy(o => o.Course).GroupBy(o => o.Course))
+        {
+            Console.WriteLine($"На {students.Key} курсе учится {students.Count()} студентов");
+        }
+
+        var l1 = list.OrderBy(o => o.Age); //Сортировка по возрасту
+        var l2 = list.OrderBy(o => o.Course).ThenBy(o => o.Age); //Сортировка по курсу и возрасту студента
         Console.WriteLine(DateTime.Now - dt);
         Console.ReadKey();
     }
