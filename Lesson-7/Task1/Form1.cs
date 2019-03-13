@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace Task1
@@ -9,6 +10,7 @@ namespace Task1
         private static int curNumber = 0;
         private static int tryCount = 0;
         private static int numberTask = 0;
+        private static Stack<int> stack = new Stack<int>();
         public MyForm()
         {
             InitializeComponent();
@@ -21,6 +23,7 @@ namespace Task1
             numberTask = rnd.Next(10, 100);
             curNumber = 0;
             tryCount = 0;
+            stack.Clear();
             lblTryCount.Text = tryCount.ToString();
             lblCurentNumber.Text = curNumber.ToString();
             lblNumberTask.Text = numberTask.ToString();
@@ -29,9 +32,10 @@ namespace Task1
         private void btnPlus1_Click(object sender, EventArgs e)
         {
             if (ChekReturn()) return;
-
+            stack.Push(curNumber);
             curNumber++;
             tryCount++;
+
             lblCurentNumber.Text = curNumber.ToString();
             lblTryCount.Text = tryCount.ToString();
             CheckWin();
@@ -41,8 +45,10 @@ namespace Task1
         private void btnMult2_Click(object sender, EventArgs e)
         {
             if (ChekReturn()) return;
+            stack.Push(curNumber);
             curNumber *= 2;
             tryCount++;
+
             lblCurentNumber.Text = curNumber.ToString();
             lblTryCount.Text = tryCount.ToString();
             CheckWin();
@@ -78,6 +84,15 @@ namespace Task1
             }
             if (numberTask == 0) return true;
             return false;
+        }
+
+        private void btnReturn_Click(object sender, EventArgs e)
+        {
+            if (stack.Count == 0) return;
+            tryCount++;
+            curNumber = stack.Pop();
+            lblCurentNumber.Text = curNumber.ToString();
+            lblTryCount.Text = tryCount.ToString();
         }
     }
 }

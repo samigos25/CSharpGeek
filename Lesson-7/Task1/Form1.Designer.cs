@@ -41,6 +41,7 @@ namespace Task1
             this.lblNumberTask = new System.Windows.Forms.Label();
             this.lblCurentNumber = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.btnReturn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnPlus1
@@ -65,7 +66,7 @@ namespace Task1
             // 
             // btnReset
             // 
-            this.btnReset.Location = new System.Drawing.Point(257, 70);
+            this.btnReset.Location = new System.Drawing.Point(257, 100);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(75, 23);
             this.btnReset.TabIndex = 2;
@@ -137,11 +138,22 @@ namespace Task1
             this.label2.TabIndex = 7;
             this.label2.Text = "Текущее число: ";
             // 
+            // btnReturn
+            // 
+            this.btnReturn.Location = new System.Drawing.Point(257, 70);
+            this.btnReturn.Name = "btnReturn";
+            this.btnReturn.Size = new System.Drawing.Size(75, 23);
+            this.btnReturn.TabIndex = 9;
+            this.btnReturn.Text = "Отменить";
+            this.btnReturn.UseVisualStyleBackColor = true;
+            this.btnReturn.Click += new System.EventHandler(this.btnReturn_Click);
+            // 
             // MyForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(344, 106);
+            this.ClientSize = new System.Drawing.Size(344, 129);
+            this.Controls.Add(this.btnReturn);
             this.Controls.Add(this.lblCurentNumber);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lblNumberTask);
@@ -169,6 +181,7 @@ namespace Task1
         private Label lblNumberTask;
         private Label lblCurentNumber;
         private Label label2;
+        private Button btnReturn;
     }
 }
 
